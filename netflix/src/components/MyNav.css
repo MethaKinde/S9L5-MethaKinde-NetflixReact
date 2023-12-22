@@ -1,0 +1,17 @@
+body {
+    font-family: Helvetica Neue, sans-serif;
+    background-color: #141414;
+    color: white;
+}
+
+.navbar {
+    padding-right: 60px;
+}
+
+.navbar .navbar-brand .img-fluid {
+    width: 100px;
+}
+
+.navbar .d-flex .dropdown .img-fluid {
+    width: 40px;
+}
