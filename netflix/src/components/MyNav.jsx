@@ -32,13 +32,13 @@ const MyNav = () => {
                         </Nav.Link>
                     </Nav>
                     <div className="d-flex justify-content-end align-items-center">
-                        <div className="search-icon me-3">
+                        <div className="search-icon me-3 icone">
                             <BiSearch />
                         </div>
                         <Nav.Link href="#" className="me-3">
                             KIDS
                         </Nav.Link>
-                        <div className="bell-icon me-3">
+                        <div className="bell-icon me-3 icone">
                             <BiSolidBell />
                         </div>
                         <NavDropdown title={<img src="./assets/avatar.png" alt="avatar" className="img-fluid" />} id="basic-nav-dropdown">

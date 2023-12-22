@@ -45,7 +45,7 @@ const TrendingNow = ({searchQuery}) => {
                             <img
                                 src={movie.Poster}
                                 alt={movie.Title}
-                                className='img-fluid'
+                                className='img-fluid movie-cover'
                                 style={{ height: '100%', width: 'auto' }}
                             />
                         </div>

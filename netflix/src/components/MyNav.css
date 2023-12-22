@@ -15,3 +15,8 @@ body {
 .navbar .d-flex .dropdown .img-fluid {
     width: 40px;
 }
+
+.icone {
+    font-size: 25px;
+    cursor: pointer;
+}
