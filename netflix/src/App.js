@@ -15,7 +15,10 @@ function App() {
 
       <main>
         <GenresSelection />
-        <TrendingNow />
+        <TrendingNow searchQuery="Christmas"/>
+        <TrendingNow searchQuery="harry potter"/>
+        <TrendingNow searchQuery="kevin hart"/>
+        <TrendingNow searchQuery="star wars"/>
       </main>
       <footer>
 

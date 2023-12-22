@@ -4,6 +4,28 @@
   display: flex;
 }
 
+.carousel-control-next,
+.carousel-control-prev {
+  width: 3%;
+}
+
+.carousel-control-next.btn:hover,
+.carousel-control-prev.btn:hover {
+  background-color: transparent;
+}
+
 #TrendingNow {
-    width: 95%;
+  width: 95%;
+}
+
+#carouselTrending {
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  position: relative;
+
 }
