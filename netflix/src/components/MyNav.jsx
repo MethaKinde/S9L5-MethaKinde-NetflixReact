@@ -3,9 +3,22 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { BiSearch, BiSolidBell } from 'react-icons/bi';
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import SearchedMovies from './SearchedMovies';
 import './MyNav.css'
 
 const MyNav = () => {
+    //lo state per il modale della search
+    const [show, setShow] = useState(false)
+    const [input, setInput] = useState("")
+    const [searchedMoviesVisible, setSearchedMoviesVisible] = useState(false)
+
+    const handleSearch = () => {
+        setSearchedMoviesVisible(true)
+    }
+
     return (
         <Navbar expand="lg" className="mx-5 mb-4" variant="dark">
             <Container fluid>
@@ -33,7 +46,7 @@ const MyNav = () => {
                     </Nav>
                     <div className="d-flex justify-content-end align-items-center">
                         <div className="search-icon me-3 icone">
-                            <BiSearch />
+                            <BiSearch onClick={() => setShow(true)} />
                         </div>
                         <Nav.Link href="#" className="me-3">
                             KIDS
@@ -52,6 +65,30 @@ const MyNav = () => {
                     </div>
                 </Navbar.Collapse>
             </Container>
+
+            <Modal
+                show={show}
+                onHide={() => setShow(false)}
+                dialogClassName="modal-90w modal-80h"
+                aria-labelledby="example-custom-modal-styling-title"
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="example-custom-modal-styling-title">
+                        Titoli, personaggi, genere..
+                        <div className='input-wrapper'>
+                            <input
+                                placeholder='Scrivi qua...'
+                                value={input}
+                                onChange={(e) => { setInput(e.target.value) }}
+                            />
+                            <Button onClick={handleSearch}>Cerca</Button>
+                        </div>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {searchedMoviesVisible && <SearchedMovies searchQuery={input} />}
+                </Modal.Body>
+            </Modal>
         </Navbar>
     )
 }

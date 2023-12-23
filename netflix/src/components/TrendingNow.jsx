@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from "react-bootstrap/Container";
 import { Col, Row } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
@@ -7,7 +7,6 @@ import CommentArea from './CommentArea';
 import './TrendingNow.css';
 
 const TrendingNow = ({ searchQuery }) => {
-    const itemsRef = useRef(null);
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [show, setShow] = useState(false);
@@ -46,7 +45,6 @@ const TrendingNow = ({ searchQuery }) => {
                 className="d-flex flex-nowrap"
                 id="carouselTrending"
                 controls={false}
-                ref={(ref) => (itemsRef.current = document.querySelectorAll('.movie'))}
             >
                 {movies.map((movie) => (
                     <Col md={2} key={movie.imdbID}>

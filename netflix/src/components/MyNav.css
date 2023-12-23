@@ -20,3 +20,13 @@ body {
     font-size: 25px;
     cursor: pointer;
 }
+
+.modal-80h {
+    max-width: none;
+    height: 93%;
+    width: 80%;
+}
+
+.modal-content {
+    height: 100%;
+}
