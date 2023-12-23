@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import { Col, Row } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import CommentArea from './CommentArea';
 import './TrendingNow.css';
 
 const TrendingNow = ({ searchQuery }) => {
@@ -73,14 +74,11 @@ const TrendingNow = ({ searchQuery }) => {
                             style={{ height: '100%', width: 'auto' }}
                         />
                     )}
-                    <p>Woohoo, what a beautiful movie!{/*Need to add here comment list*/}</p>
+                    <CommentArea asin={selectedMovie && selectedMovie.imdbID}/>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
                     </Button>
                 </Modal.Footer>
             </Modal>
