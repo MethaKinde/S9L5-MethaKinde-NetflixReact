@@ -1,14 +1,23 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Container from "react-bootstrap/Container";
 import { Col, Row } from "react-bootstrap";
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 import './TrendingNow.css';
 
-const TrendingNow = ({searchQuery}) => {
-    const itemsRef = useRef(null)
-    const [movies, setMovies] = useState([])
+const TrendingNow = ({ searchQuery }) => {
+    const itemsRef = useRef(null);
+    const [movies, setMovies] = useState([]);
+    const [selectedMovie, setSelectedMovie] = useState(null);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = (movie) => {
+        setSelectedMovie(movie);
+        setShow(true);
+    };
 
     useEffect(() => {
-
         const fetchData = async () => {
             const apiKey = '8453cc11';
             const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchQuery}`;
@@ -16,7 +25,7 @@ const TrendingNow = ({searchQuery}) => {
             try {
                 const response = await fetch(apiUrl);
                 const data = await response.json();
-                console.log(data)
+                console.log(data);
 
                 if (data.Search) {
                     setMovies(data.Search);
@@ -26,8 +35,8 @@ const TrendingNow = ({searchQuery}) => {
             }
         };
 
-        fetchData()
-    }, []);
+        fetchData();
+    }, [searchQuery]);
 
     return (
         <Container fluid className="ms-5 mb-4 genere" id="TrendingNow">
@@ -39,9 +48,8 @@ const TrendingNow = ({searchQuery}) => {
                 ref={(ref) => (itemsRef.current = document.querySelectorAll('.movie'))}
             >
                 {movies.map((movie) => (
-
                     <Col md={2} key={movie.imdbID}>
-                        <div className='movie'>
+                        <div className='movie' onClick={() => handleShow(movie)}>
                             <img
                                 src={movie.Poster}
                                 alt={movie.Title}
@@ -52,8 +60,32 @@ const TrendingNow = ({searchQuery}) => {
                     </Col>
                 ))}
             </Row>
+            <Modal show={show} onHide={handleClose} animation={false} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>{selectedMovie && selectedMovie.Title}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className='text-center'>
+                    {selectedMovie && (
+                        <img
+                            src={selectedMovie.Poster}
+                            alt={selectedMovie.Title}
+                            className='img-fluid mb-3'
+                            style={{ height: '100%', width: 'auto' }}
+                        />
+                    )}
+                    <p>Woohoo, what a beautiful movie!{/*Need to add here comment list*/}</p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </Container>
-    )
+    );
 }
 
 export default TrendingNow;
