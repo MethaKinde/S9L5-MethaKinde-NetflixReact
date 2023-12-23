@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -18,6 +19,16 @@ const MyNav = () => {
     const handleSearch = () => {
         setSearchedMoviesVisible(true)
     }
+
+    const handleClose = () => {
+        setShow(false)
+        setSearchedMoviesVisible(false) // Imposta searchedMoviesVisible su false quando si chiude il modale
+        setInput('')
+    }
+
+    useEffect(() => {
+        setInput('')
+    }, [searchedMoviesVisible]);
 
     return (
         <Navbar expand="lg" className="mx-5 mb-4" variant="dark">
@@ -68,7 +79,7 @@ const MyNav = () => {
 
             <Modal
                 show={show}
-                onHide={() => setShow(false)}
+                onHide={handleClose}
                 dialogClassName="modal-90w modal-80h"
                 aria-labelledby="example-custom-modal-styling-title"
             >
